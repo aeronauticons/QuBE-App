@@ -1,1 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <style type="text/css">
+        body{
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        table{
+            margin-left: 20px;
+        }
+        .tble{
+            border:1px solid black;
+            border-collapse: collapse;
+            background-color: rgb(242, 253, 253);
+        }
+        .tblee{
+            background-color:rgb(252, 253, 242);
+            margin-top: 20px;
+            border: 0.5px solid black;
+        }
+        .btn-revealans{
+            margin: auto;
+            border: 1px solid rgb(44, 21, 21);
+            background : rgb(170, 240, 240);
+            width: 75px;
+            height: 30px;
+            text-align: center;
+            color:black;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgb(0,0,0,0.1);
+            -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            -webkit-transition-property: box-shadow, transform;
+            transition-property: box-shadow, transform;
+        }
+        button:hover, button:focus, button:active{
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+        .tbb{
+            margin: auto;
+            border: 1px solid rgb(0, 23, 114);
+            background : teal;
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            color:#fff;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgb(0,0,0,0.1);
+            -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            -webkit-transition-property: box-shadow, transform;
+            transition-property: box-shadow, transform;
+        }
+        ion-icon{
+            font-size: 18px;
+            color:#004933;
+            cursor: pointer;
+        }
+        .b2d{
+            width: 100%;
+            border-radius: inherit;
+        }
+        #container{
+            width: 1050px;
+            position: absolute;
+            margin-left: 300px;
+            margin-top: -20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            border-radius: 1em;
+        }
+
+
+
+    </style>
+    <title>Binary 2 Decimal</title>
+</head>
+
+<body>
+    <div id="main">
+        <p><big>Binary to Decimal (Table Discussion)</big>&nbsp;
+            
+            <ion-icon name="help-circle-outline" onclick="help1()"></ion-icon>
+            <span style="padding-left:1050px">
+            Download <ion-icon name="download-outline" id="download1"></ion-icon>
+            <div id="container"><img class="b2d" src="Bin2Dec.jpg" alt=""></div></p>
+        
+        <label>Binary number: </label>
+        <input id="binary" type="text" maxlength="8" placeholder="Insert">&nbsp;
+        <button onclick="tablebin(binary)" class="tbb">Create Table</button>&nbsp;
+        <button onClick="binaryToDecimalConverter(binary)" type="button" class="btn-revealans">Reveal</button>
+
+        <hr>
+        
+        <div id="result"> </div>
+
+      <script>
+        function tablebin(binary){
+            let variable = document.getElementById('binary').value;
+            let resultField;
+
+            for (let i=variable.length-1; i>=0; i--){
+                if (variable.charAt(i) !== "1") {
+                     if (variable.charAt(i) !== "0") {
+                        return resultField = alert(`You can't enter other characters than 0 and 1!`)
+                        console.log(resultField);
+                    }
+                }
+            }
+            t = "<br><table class='tble' border='1px' height='500' width='500'>";
+            for(var i = 0; i<variable.length; i++){
+                t +="<tr>";
+                for(var j=0; j<3; j++){
+                    if (j===2 && i===variable.length-1)
+                    {
+                        t+= "<table class='tblee' height='50' width='200'> <tr> <td> Answer:  </td> </tr> </table>";
+
+                    } else
+                    t+= "<td>  </td>";
+                    
+                }
+                t += "</tr>";
+            }
+            t+="</table><br>";
+            document.getElementById("result").innerHTML= t;
+        }
+    
+
+        function binaryToDecimalConverter(binary) {
+        let variable = document.getElementById('binary').value;
+        let resultField;
+
+        let dec = 0;
+        let counter = 1;
+
+        for (let i=variable.length-1; i>=0; i--) {
+            
+            if (variable.charAt(i) !== "1") {
+                if (variable.charAt(i) !== "0") {
+                    return resultField = alert(`You can't enter other characters than 0 and 1!`)
+                    console.log(resultField);
+                }
+            }
+
+            dec += variable.charAt(i) * counter
+            counter *= 2
+        }
+        return resultField = confirm(`Result: ${dec}`)
+        console.log(resultField);
+        }
+
+        var a=0;
+        document.getElementById("container").style.display="none";
+        function help1(){
+            a+=1;
+            if (a==1){
+                document.getElementById("container").style.display="inline";
+                return a=1;
+            } else {
+                document.getElementById("container").style.display="none";
+                return a=0;
+            }
+        }
+      </script>
+      <script src="html2canvas.min.js"></script>
+      <script>
+          document.getElementById("download1").onclick = function (){
+            const screenshotTarget = document.getElementById('result');
+
+            html2canvas(screenshotTarget).then((canvas)=> {
+                const base64image = canvas.toDataURL("image/png");
+                var anchor = document.createElement('a');
+                anchor.setAttribute("href", base64image);
+                anchor.setAttribute("download", "tableB2D.png");
+                anchor.click();
+                anchor.remove();
+            });
+          };
+      </script>
+      
+      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
